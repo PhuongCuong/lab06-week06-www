@@ -39,7 +39,7 @@ public class UserController {
                 "mobile", user.getEmail(), user.getPasswordHash(),
                 Instant.now(),null, user.getIntro(), "");
         userResponsitory.save(user1);
-        return "user/login";
+        return "redirect:/user/login";
     }
 
     @GetMapping("/login-action")
@@ -48,9 +48,9 @@ public class UserController {
         Optional<User> optional = userResponsitory.getloginAcount(user.getEmail(),user.getPasswordHash());
         if(optional.isPresent()){
             session.setAttribute("userInfo",optional.get());
-            url = "user/home";
+            url = "redirect:/user/home";
         }else{
-            url = "user/login";
+            url = "redirect:/user/login";
         }
         return url;
     }
@@ -59,6 +59,11 @@ public class UserController {
     public String getLogout(HttpSession session){
 //        session.removeAttribute("userInfo");
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/home")
+    public String getHome(){
+        return "user/home";
     }
 
 }

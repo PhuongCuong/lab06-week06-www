@@ -30,12 +30,14 @@ public class Post {
     private User author;
     private Instant updateAt;
     private Instant publishedAt;
+
     @OneToMany(mappedBy = "parent")
     private Set<Post> posts = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId")
     private Post parent;
+
     @OneToMany(mappedBy = "post")
     private Set<PostComment> postComments = new LinkedHashSet<>();
 

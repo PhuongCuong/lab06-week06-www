@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!--  <link href="css/styles.css" rel="stylesheet" />-->
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/post">list post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/post/mypost">my post</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <a class="btn mx-3" type="submit" th:text="${session.userInfo != null ? session.userInfo.getEmail() : null}"></a>
+                    <a class="btn btn-outline-success" type="submit" th:href="@{/user/logout}">Log out</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex mt-3 justify-content-center align-items-center">
+        <h4>Add my Post</h4>
+    </div>
+
+    <div class="my-3 row d-flex justify-content-center">
+        <div class="col-7">
+            <form action="#" th:href="@{/post/mypost/add-action}" th:object="${post}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">meta_title</label>
+                    <input type="text" class="form-control" th:field="*{metaTitle}">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">title</label>
+                    <input type="text" class="form-control" th:field="*{title}" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Published</label>
+                    <select class="form-control" th:field="*{published}">
+                        <option class="form-control" value="1">Public</option>
+                        <option class="form-control" value="0">Static</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">summary</label>
+                    <textarea class="form-control" rows="3" th:field="*{summary}"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-control" rows="5" th:field="*{content}"></textarea>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-end">
+                    <input class="btn btn-danger" type="submit" value="Add Post">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
